@@ -1,0 +1,43 @@
+<div *ngIf="book" class="row">
+    <div class="col s12 m8 offset-m2">
+    <div class="card horizontal hoverable">
+      <div class="card-image">
+        <img [src]="book.picture">
+      </div>
+      <div class="card-stacked">
+        <div class="card-content">
+          <table class="bordered striped">
+            <tbody>
+              <tr>
+                <td>Titre</td>
+                <td><strong>{{ book.title }}</strong></td>
+              </tr>
+              <tr>
+                <td>Auteur</td>
+                <td><strong>{{ book.author }}</strong></td>
+              </tr>
+              <tr>
+                <td>Date de publication</td>
+                <td><strong>{{ book.publishDate }}</strong></td>
+              </tr>
+              <tr>
+                <td>Types</td>
+                <td>
+                  <span *ngFor="let type of book.types" class="{{ type | bookTypePipeColor }}">{{ type }}</span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="card-action">
+          <a (click)="goBack()"><i class="small material-icons">arrow_back</i></a>
+          <a (click)="modify(book)"><i class="small material-icons">create</i></a>
+          <a (click)="delete(book)"><i class="small material-icons">clear</i></a>
+        </div>
+      </div>
+    </div>
+    </div>
+    </div>
+    <h4 *ngIf='!book' class="center">
+      <app-loader></app-loader>
+    </h4>

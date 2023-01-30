@@ -1,0 +1,31 @@
+
+<div class="container">
+    <div class="row">
+        <app-search-book></app-search-book>
+
+        <div *ngFor="let book of bookList" class="col m4 s6">
+            <div class="card horizontal" (click)="goToBook(book)" appBorderCard>
+                <div class="card-image">
+                    <img [src]="book.picture" style="max-height:100%;">
+                </div>
+                <div class="card-stacked">
+                    <div class="card-content">
+                        <p>{{ book.title }}</p>
+                        <p>{{ book.author }}</p>
+                        <span *ngFor="let type of book.types" class="{{ type | bookTypePipeColor}}">
+                            {{ type}}
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<a 
+    class="btn-floating btn-large wavex-effect waves-light red z-depth-3"
+    style="position:fixed; right: 25px; bottom: 25px;"
+    routerLink="/book/add"
+>
+<i class="big material-icons">brush</i>
+</a>

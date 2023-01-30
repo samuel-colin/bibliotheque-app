@@ -1,0 +1,98 @@
+<form *ngIf="book" (ngSubmit)="onSubmit()" #bookForm="ngForm">
+    <div class="row">
+      <div class="col s8 offset-s2">
+        <div class="card-panel">
+    
+          <!-- Book Title -->
+          <div class="form-group">
+            <label for="title">Titre</label>
+            <input type="text" class="form-control" id="title"
+                    required
+                    pattern="^[a-zA-Z0-9àéèçô ]{1,100}$"
+                   [(ngModel)]="book.title" name="title"
+                   #title="ngModel">
+    
+            <div [hidden]="title.valid || title.pristine" class="card-panel red accent-1">
+                  Le titre du livre est requis (1-100).
+            </div>
+          </div>
+    
+          <!-- Book Author -->
+          <div class="form-group">
+            <label for="author">Auteur</label>
+            <input type="text" class="form-control" id="author"
+                    required
+                    pattern="^[a-zA-Z0-9àéèçô ]{1,100}$"
+                   [(ngModel)]="book.author" name="author"
+                   #author="ngModel">
+    
+            <div [hidden]="author.valid || author.pristine" class="card-panel red accent-1">
+                  L'auteur du livre est requis (1-100).
+            </div>
+          </div>
+    
+          <!-- Book Picture -->
+          <div *ngIf="isAddForm" class="form-group">
+            <label for="picture">Couverture (URL externe)</label>
+            <input type="text" class="form-control" id="picture"
+                    required
+                    pattern="^[a-zA-Z0-9àéèçô ]{1,100}$"
+                   [(ngModel)]="book.picture" name="picture"
+                   #picture="ngModel">
+    
+                   <div [hidden]="author.valid || author.pristine" class="card-panel red accent-1">
+                         La couverture du livre est requise.
+                   </div>
+          </div>
+    
+          <!-- Book Published Date -->
+          <div class="form-group">
+            <label for="publishDate">Année de publication</label>
+            <input type="text" class="form-control" id="publishDate"
+                    required
+                    pattern="^[0-9]{1,4}$"
+                   [(ngModel)]="book.publishDate" name="publishDate"
+                   #publishDate="ngModel">
+             <div [hidden]="publishDate.valid || publishDate.pristine" class="card-panel red accent-1">
+                   L'année d'édition est obligatoire.
+             </div>
+          </div>
+    
+          <!-- Book Types -->
+          <form class="form-group">
+            <label for="types">Types</label>
+            <p *ngFor="let type of types">
+              <label>
+                <input type="checkbox"
+                  class="filled-in"
+                  id="{{ type }}"
+                  [value]="type"
+                  [checked]="hasType(type)"
+                  [disabled]="!isTypesValid(type)"
+                  (change)="selectType($event, type)"/>
+                <span [attr.for]="type">
+                  <div class="{{ type | bookTypePipeColor }}">
+                    {{ type }}
+                  </div>
+                </span>
+              </label>
+            </p>
+          </form>
+    
+          <!-- Submit button -->
+          <div class="divider"></div>
+          <div class="section center">
+            <button type="submit"
+              class="waves-effect waves-light btn"
+              [disabled]="!bookForm.form.valid">
+              Valider</button>
+          </div>
+    
+        </div>
+      </div>
+    </div>
+  </form>
+
+  <h3 *ngIf="!book" class="center">
+    <app-loader></app-loader>
+  </h3>
