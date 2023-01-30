@@ -1,6 +1,7 @@
 {
   "name": "bibliotheque-app",
-  "version": "0.0.0",
+  "version": "1.0.0",
+  "homepage": "https://samuel-colin.github.io/bibliotheque-app/",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
