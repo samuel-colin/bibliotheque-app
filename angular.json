@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "bibliotheque-sonore-app": {
+    "bibliotheque-app": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -40,7 +40,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/bibliotheque-sonore-app",
+            "outputPath": "dist/bibliotheque-app",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": [
@@ -87,10 +87,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "bibliotheque-sonore-app:build:production"
+              "browserTarget": "bibliotheque-app:build:production"
             },
             "development": {
-              "browserTarget": "bibliotheque-sonore-app:build:development"
+              "browserTarget": "bibliotheque-app:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -98,10 +98,13 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "bibliotheque-sonore-app:build"
+            "browserTarget": "bibliotheque-app:build"
           }
         }
       }
     }
+  },
+  "cli": {
+    "analytics": false
   }
 }
