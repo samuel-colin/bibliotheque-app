@@ -1,8 +1,0 @@
-<h2 class="center">{{ book?.title }}</h2>
-<h3 class="center">{{ book?.author }}</h3>
-
-<p *ngIf="book" class="center">
-    <img [src]="book.picture">
-</p>
-
-<app-book-form *ngIf="book" [book]="book"></app-book-form>
